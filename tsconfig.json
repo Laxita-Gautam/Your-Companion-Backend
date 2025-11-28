@@ -120,9 +120,11 @@
     "outDir": "./dist",
 
     /* === Path Aliases === */
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"]
+    "baseUrl": ".",
+   "paths": {
+  "@/*": ["src/*"]
+}
+
     },
 
     /* === TypeScript Features === */
@@ -138,4 +140,5 @@
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
+
 }
