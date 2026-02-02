@@ -241,9 +241,11 @@ import { InngestSessionResponse, InngestEvent } from "../types/inngest";
 import { Types } from "mongoose";
 
 // Initialize Gemini API
-const genAI = new GoogleGenerativeAI(
-  process.env.GEMINI_API_KEY || "AIzaSyBTPRuz-vgVdz1ElGcsqw_y786XBdY2D-M"
-);
+if (!process.env.GEMINI_API_KEY) {
+  throw new Error("GEMINI_API_KEY is not set");
+}
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Create a new chat session
 export const createChatSession = async (req: Request, res: Response) => {
@@ -501,4 +503,5 @@ export const getChatHistory = async (req: Request, res: Response) => {
     logger.error("Error fetching chat history:", error);
     res.status(500).json({ message: "Error fetching chat history" });
   }
+
 };
